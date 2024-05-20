@@ -20,9 +20,6 @@ You can get more information about Drone:bit on [ELECFREAKS WIKI](
 https://www.elecfreaks.com/learn-en/microbitKit/Drone_bit/index.html)
 
 ## Basic usage
-* To initialize the UAV, you can set it to remote control mode and master control mode
-```JavaScript
-Drones.initModule(Drones.Runmodes.Master)
 ```
 * Setting the flight power of UAV
 ```JavaScript
@@ -59,7 +56,6 @@ Drones.Urgent_action(Drones.Urgentoptions.Emergency_stop)
 
 ## Code Example
 ```JavaScript
-Drones.initModule(Drones.Runmodes.Master)
 Drones.UAV_speed(80)
 Drones.Basic_action(Drones.Basicoptions.Takeoff)
 Drones.Move_action(Drones.Directionoptions.Forward, 100)
