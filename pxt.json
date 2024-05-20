@@ -1,5 +1,5 @@
 {
-    "name": "pxt-dronebit",
+    "name": "microbitDrone",
     "version": "0.3.7",
     "description": "",
     "dependencies": {
@@ -10,7 +10,7 @@
     "files": [
         "README.md",
         "main.ts",
-        "_locales/zh-CN/pxt-dronebit-strings.json"
+        "_locales/zh-CN/microbitDrone-strings.json"
     ],
     "testFiles": [
         "test.ts"
