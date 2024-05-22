@@ -1,8 +1,7 @@
-![](https://img.shields.io/badge/Plantfrom-Micro%3Abit-red) ![](https://img.shields.io/travis/com/elecfreaks/microbitDrone) ![](https://img.shields.io/github/v/release/elecfreaks/microbitDrone) ![](https://img.shields.io/github/last-commit/elecfreaks/microbitDrone) ![](https://img.shields.io/github/languages/top/elecfreaks/microbitDrone) ![](https://img.shields.io/github/issues/elecfreaks/microbitDrone) ![](https://img.shields.io/github/license/elecfreaks/microbitDrone) 
+![](https://img.shields.io/badge/Plantfrom-Micro%3Abit-red) ![](https://img.shields.io/travis/com/FLY-SHARK/microbitDrone) ![](https://img.shields.io/github/v/release/FLY-SHARK/microbitDrone) ![](https://img.shields.io/github/last-commit/FLY-SHARK/microbitDrone) ![](https://img.shields.io/github/languages/top/FLY-SHARK/microbitDrone) ![](https://img.shields.io/github/issues/FLY-SHARK/microbitDrone) ![](https://img.shields.io/github/license/FLY-SHARK/microbitDrone) 
 
 # Drone:bit Package
 
-![](/image.png/)
 
 Drone:bit is a new UAV based on micro:bit.
 
@@ -12,12 +11,12 @@ Through your operation, you can give it commands of hovering at a fixed altitude
 
 Drone:bit, take you to a new height!
 
-This extension is designed to programme and drive the Drone:bit UAV, You can [get Drone:bit from the Elecfreaks store](https://www.elecfreaks.com/micro-bit-drone-bit-kit-without-micro-bit-board.html)
+This extension is designed to programme and drive the Drone:bit UAV, You can [get Drone:bit from the FLY-SHARK store](https://www.FLY-SHARK.com/micro-bit-drone-bit-kit-without-micro-bit-board.html)
 
 ## Document
 
-You can get more information about Drone:bit on [ELECFREAKS WIKI](
-https://www.elecfreaks.com/learn-en/microbitKit/Drone_bit/index.html)
+You can get more information about Drone:bit on [FLY-SHARK.COM](
+https://www.FLY-SHARK.com/learn-en/microbitKit/Drone_bit/index.html)
 
 ## Basic usage
 ```
