@@ -127,6 +127,27 @@ namespace Drones {
         serial.writeBuffer(txBuff)
         WaitCellback()
     }
+    //% block="Move action %Directionstate by %distance cm"
+    //% weight=70 group="Basic"
+    export function Move_action(Directionstate: Directionoptions, timeSec: number): void {
+        serial.readString()
+        let txBuff = pins.createBuffer(6)
+        txBuff[0] = 0xEF
+        txBuff[2] = 0x01
+        txBuff[3] = Directionstate
+        if (timeSec > 255) {
+            txBuff[1] = 2
+            txBuff[4] = 255
+            txBuff[5] = timeSec - 255
+        }
+        else {
+            txBuff[1] = 1
+            txBuff[4] = timeSec
+            txBuff[5] = 0
+        }
+        serial.writeBuffer(txBuff)
+        WaitCellback()
+    }
     //% block="Rotation action %rotationstate by %angle °"
     //% weight=65 group="Basic"
     export function Rotation_action(rotationstate: Angleoptions, angle: number): void {
