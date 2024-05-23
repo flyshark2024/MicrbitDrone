@@ -13,6 +13,7 @@
   "Drones.Get_Sensor|block": "Get %state Value",
   "Drones.Hovering|block": "UAV hovering %time S",
   "Drones.Move_action|block": "Move action %Directionstate by %distance cm",
+  "Drones.Move_actionTime|block": "Move action %Directionstate by %timeSec S",
   "Drones.Roll_action|block": "Roll action %rotationstate ",
   "Drones.Rolloptions.Roll_back|block": "Roll back",
   "Drones.Rolloptions.Roll_forward|block": "Roll forward",
