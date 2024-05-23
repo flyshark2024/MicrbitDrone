@@ -127,9 +127,9 @@ namespace Drones {
         serial.writeBuffer(txBuff)
         WaitCellback()
     }
-    //% block="Move action %Directionstate by %distance cm"
+    //% block="Move actionTime %Directionstate by %timeSec S"
     //% weight=70 group="Basic"
-    export function Move_action(Directionstate: Directionoptions, timeSec: number): void {
+    export function Move_actionTime(Directionstate: Directionoptions, timeSec: number): void {
         serial.readString()
         let txBuff = pins.createBuffer(6)
         txBuff[0] = 0xEF
