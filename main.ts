@@ -83,7 +83,7 @@ namespace Drones {
     //% block="Setting UAV altitude $alt \\%"
     //% alt.min=0 alt.max=100
     //% weight=90 group="Basic"
-    export function UAV_speed(alt: number): void {
+    export function UAV_altitude(alt: number): void {
         let txBuff = pins.createBuffer(8)
         txBuff[0] = 0xa5
         txBuff[1] = 0x01

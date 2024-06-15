@@ -1,5 +1,5 @@
-Drones.initModule(Drones.Runmodes.Master)
-Drones.UAV_speed(80)
+Drones.initModule()
+Drones.UAV_altitude(80)
 Drones.Basic_action(Drones.Basicoptions.Takeoff)
 Drones.Move_action(Drones.Directionoptions.Forward, 100)
 basic.forever(function () {
