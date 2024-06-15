@@ -72,7 +72,7 @@ namespace Drones {
 
     //% block="Initialize UAV"
     //% weight=100 group="Basic"
-    export function initModule(mode: Runmodes): void {
+    export function initModule(): void {
         serial.redirect(
             SerialPin.P14,
             SerialPin.P13,
