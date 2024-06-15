@@ -1,5 +1,5 @@
 /**
-* Functions to UVA by ELECFREAKS Co.,Ltd.
+* Functions to UVA by FLY-SHARK
 */
 //% color=#FF0000  icon="\uf072" block="Drones" blockId="Drones"
 //% groups='["Basic", "Caution!"]'
@@ -22,10 +22,6 @@ namespace Drones {
         Emergency_stop = 0x05
     }
     export enum Directionoptions {
-        //% block="Up" 
-        Up = 0x10,
-        //% block="Down"
-        Down = 0x11,
         //% block="Forward" 
         Forward = 0x12,
         //% block="Backward"
@@ -170,24 +166,11 @@ namespace Drones {
     //% deprecated=true
     export function Roll_action(rollstate: Rolloptions): void {
         serial.readString()
-        let txBuff = pins.createBuffer(6)
-        txBuff[0] = 0xEF
-        txBuff[2] = 0x01
+        let txBuff = pins.createBuffer(8)
+        txBuff[0] = 0xa5
+        txBuff[2] = 0x07
         txBuff[3] = rollstate
         serial.writeBuffer(txBuff)
-        WaitCellback()
-    }
-    //% block="UAV hovering %time S"
-    //% weight=60 group="Basic"
-    export function Hovering(time: number): void {
-        let txBuff = pins.createBuffer(5)
-        txBuff[0] = 0xEF
-        txBuff[1] = 1
-        txBuff[2] = 0x01
-        txBuff[3] = 0x04
-        txBuff[4] = time
-        serial.writeBuffer(txBuff)
-        basic.pause(time * 1000)
         WaitCellback()
     }
 
@@ -210,23 +193,5 @@ namespace Drones {
             return rxBuff[1] + rxBuff[2]
         }
 
-    }
-
-    //% block="Urgent action %urgentstate"
-    //% weight=10 group="Caution!"
-    export function Urgent_action(urgentstate: Urgentoptions): void {
-        serial.readString()
-        let txBuff = pins.createBuffer(8)
-        txBuff[0] = 0xa5
-        txBuff[1] = 0
-        txBuff[2] = 0x01
-        txBuff[3] = urgentstate
-        serial.writeBuffer(txBuff)
-        serial.redirectToUSB()
-        while (true) {
-            music.setTempo(150)
-            music.playTone(784, music.beat(BeatFraction.Eighth))
-            basic.pause(100)
-        }
     }
 }

@@ -23,7 +23,7 @@
   "Drones.Runmodes.Remote|block": "Remote",
   "Drones.Sensoroptions.Height|block": "Height",
   "Drones.Sensoroptions.Voltage|block": "Voltage",
-  "Drones.UAV_speed|block": "Setting UAV altitude $alt cm",
+  "Drones.UAV_altitude|block": "Setting UAV altitude $alt cm",
   "Drones.Urgent_action|block": "Urgent action %urgentstate",
   "Drones.Urgentoptions.Emergency_stop|block": "Emergency stop",
   "Drones.initModule|block": "Initialize UAV",
