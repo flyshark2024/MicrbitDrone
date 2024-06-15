@@ -1,7 +1,7 @@
 ## Basic usage
-* To initialize the UAV, you can set it to remote control mode and master control mode
+* To initialize the UAV
 ```JavaScript
-Drones.initModule(Drones.Runmodes.Master)
+Drones.initModule()
 ```
 * Basic command of UAV, take off and landing
 ```JavaScript
@@ -34,7 +34,7 @@ Drones.Urgent_action(Drones.Urgentoptions.Emergency_stop)
 
 ## Code Example
 ```JavaScript
-Drones.initModule(Drones.Runmodes.Master)
+Drones.initModule()
 Drones.Basic_action(Drones.Basicoptions.Takeoff)
 Drones.Move_action(Drones.Directionoptions.Forward, 100)
 basic.forever(function () {
