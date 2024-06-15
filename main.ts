@@ -177,21 +177,31 @@ namespace Drones {
     //% block="Get %state Value"
     //% weight=50 group="Basic"
     export function Get_Sensor(state: Sensoroptions): number {
-        serial.readString()
-        let txBuff = pins.createBuffer(4)
-        let rxBuff = pins.createBuffer(3)
-        txBuff[0] = 0xEF
-        txBuff[1] = 0
-        txBuff[2] = 0x02
-        txBuff[3] = state
-        serial.writeBuffer(txBuff)
-        rxBuff = serial.readBuffer(3)
-        if (state == Sensoroptions.Voltage) {
-            return (rxBuff[1] + rxBuff[2]) * 0.1
-        }
-        else {
-            return rxBuff[1] + rxBuff[2]
-        }
 
+        while (true) {
+            let txBuff = pins.createBuffer(8)
+            txBuff[0] = 0xa5
+            txBuff[1] = 0x81
+            serial.writeBuffer(txBuff)
+            serial.setRxBufferSize(8)
+            basic.pause(500)
+            let rowData = serial.readBuffer(0)
+            if (rowData.length < 8) {
+                basic.showIcon(IconNames.No)
+                return 0
+            } else {
+                if (rowData[0] == 0x5a && rowData[1] == 0x81) {
+                    //basic.showIcon(IconNames.Yes)
+                    music.startMelody(music.builtInMelody(Melodies.BaDing), MelodyOptions.Once)
+                    
+                    if (state == Sensoroptions.Voltage) {
+                        return (rowData[2]) * 0.1
+                    }
+
+                    return 0
+                }
+            }
+        }
+        return 0;
     }
 }

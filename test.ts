@@ -13,4 +13,6 @@ input.onButtonPressed(Button.A, function() {
     //Drones.Move_action(Drones.Directionoptions.Left, 150)
     //basic.pause(1000)
     //Drones.Basic_action(Drones.Basicoptions.Landing)
+   let vtg = Drones.Get_Sensor(Drones.Sensoroptions.Voltage)
+    basic.showNumber(vtg)
 })
