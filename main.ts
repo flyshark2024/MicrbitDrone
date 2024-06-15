@@ -58,16 +58,26 @@ namespace Drones {
         Height = 0x02
     }
     function WaitCellback(): boolean {
-        basic.pause(1000)
-        rxBuff = serial.readBuffer(3)
-        if (rxBuff[0] == 0x01 && rxBuff[1] == 0x01) {
-            radio.sendString("S")
-            return true
+        while(true){
+            let txBuff = pins.createBuffer(8)
+            txBuff[0] = 0xa5
+            txBuff[1] = 0x5a
+            serial.writeBuffer(txBuff)
+            serial.setRxBufferSize(8)
+            basic.pause(500)
+            let rowData = serial.readBuffer(0)
+            if(rowData.length < 8){
+                basic.showIcon(IconNames.No)
+                return false
+            }else{
+                if (rowData[0] == 0x5a && rowData[1] == 0xff){
+                    //basic.showIcon(IconNames.Yes)
+                    music.startMelody(music.builtInMelody(Melodies.BaDing), MelodyOptions.Once)
+                    return true
+                }
+            }
         }
-        else {
-            radio.sendString("F")
-            return false
-        }
+        return false
     }
 
     //% block="Initialize UAV"
@@ -80,7 +90,7 @@ namespace Drones {
         )
         music.startMelody(music.builtInMelody(Melodies.PowerUp), MelodyOptions.Once)
     }
-    //% block="Setting UAV altitude $alt \\%"
+    //% block="Setting UAV altitude $alt cm"
     //% alt.min=0 alt.max=100
     //% weight=90 group="Basic"
     export function UAV_altitude(alt: number): void {
@@ -143,14 +153,14 @@ namespace Drones {
         let txBuff = pins.createBuffer(8)
         txBuff[0] = 0xa5
         txBuff[1] = 0x03
-        txBuff[3] = rotationstate
+        txBuff[2] = rotationstate
         if (angle > 255) {
-            txBuff[2] = 255
-            txBuff[3] = angle - 255
+            txBuff[3] = 255
+            txBuff[4] = angle - 255
         }
         else {
-            txBuff[2] = angle
-            txBuff[3] = 0
+            txBuff[3] = angle
+            txBuff[4] = 0
         }
         serial.writeBuffer(txBuff)
         WaitCellback()

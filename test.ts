@@ -1,11 +1,16 @@
+basic.showIcon(IconNames.Heart)
 Drones.initModule()
-Drones.UAV_altitude(80)
-Drones.Basic_action(Drones.Basicoptions.Takeoff)
-Drones.Move_action(Drones.Directionoptions.Forward, 100)
-basic.forever(function () {
-    if (Drones.Get_Sensor(Drones.Sensoroptions.Voltage) > 3.5) {
-        Drones.Hovering(10)
-    } else {
-        Drones.Basic_action(Drones.Basicoptions.Takeoff)
-    }
+
+input.onButtonPressed(Button.A, function() {
+    //Drones.Basic_action(Drones.Basicoptions.Takeoff)
+    //basic.pause(1000)
+    //Drones.UAV_altitude(80)
+    //basic.pause(1000)
+    //Drones.Move_action(Drones.Directionoptions.Forward, 150)
+    //basic.pause(1000)
+    //Drones.Rotation_action(Drones.Angleoptions.Left, 90)
+    //basic.pause(1000)
+    //Drones.Move_action(Drones.Directionoptions.Left, 150)
+    //basic.pause(1000)
+    //Drones.Basic_action(Drones.Basicoptions.Landing)
 })
