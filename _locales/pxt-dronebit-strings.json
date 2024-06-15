@@ -26,7 +26,7 @@
   "Drones.UAV_speed|block": "Setting UAV power $power \\%",
   "Drones.Urgent_action|block": "Urgent action %urgentstate",
   "Drones.Urgentoptions.Emergency_stop|block": "Emergency stop",
-  "Drones.initModule|block": "Initialize UAV to %mode mode",
+  "Drones.initModule|block": "Initialize UAV",
   "Drones|block": "Drones",
   "{id:category}Drones": "Drones",
   "{id:group}Basic": "Basic",

@@ -70,56 +70,15 @@ namespace Drones {
         }
     }
 
-    //% block="Initialize UAV to %mode mode"
+    //% block="Initialize UAV"
     //% weight=100 group="Basic"
     export function initModule(mode: Runmodes): void {
-        serial.redirect(SerialPin.P1, SerialPin.P2, 115200)
-        let txBuff = pins.createBuffer(1)
-        let rxBuff = pins.createBuffer(3)
-        serial.readString()
-        rxBuff = serial.readBuffer(3)
-        while (rxBuff[1] == 0x02) {
-            music.startMelody(music.builtInMelody(Melodies.PowerDown), MelodyOptions.Once)
-            basic.pause(3000)
-        }
+        serial.redirect(
+            SerialPin.P14,
+            SerialPin.P13,
+            BaudRate.BaudRate115200
+        )
         music.startMelody(music.builtInMelody(Melodies.PowerUp), MelodyOptions.Once)
-        txBuff[0] = mode
-        basic.pause(200)
-        serial.writeBuffer(txBuff)
-        basic.pause(200)
-
-        if (mode == Runmodes.Remote) {
-            while (true) {
-                basic.showLeds(`
-            . . . . .
-            . . . . .
-            . . . . .
-            . . . . .
-            . . # . .
-            `)
-                basic.showLeds(`
-            . . . . .
-            . . . . .
-            . . # . .
-            . # . # .
-            . . . . .
-            `)
-                basic.showLeds(`
-            . # # # .
-            # . . . #
-            . . . . .
-            . . . . .
-            . . . . .
-            `)
-            }
-
-        }
-        loops.everyInterval(1000, function () {
-            let breathBuff = pins.createBuffer(2)
-            breathBuff[0] = 0xAF
-            breathBuff[1] = 0xFA
-            serial.writeBuffer(breathBuff)
-        })
     }
     //% block="Setting UAV power $power \\%"
     //% power.min=0 power.max=100

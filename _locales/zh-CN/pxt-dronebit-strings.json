@@ -26,7 +26,7 @@
   "Drones.UAV_speed|block": "设置无人机动力为 $power \\%",
   "Drones.Urgent_action|block": "紧急指令 %urgentstate",
   "Drones.Urgentoptions.Emergency_stop|block": "紧急停车",
-  "Drones.initModule|block": "初始化无人机为 %mode 模式",
+  "Drones.initModule|block": "初始化无人机",
   "{id:group}Basic": "基础",
   "{id:group}Caution!": "紧急!"
 }
