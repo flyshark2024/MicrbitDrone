@@ -80,17 +80,21 @@ namespace Drones {
         )
         music.startMelody(music.builtInMelody(Melodies.PowerUp), MelodyOptions.Once)
     }
-    //% block="Setting UAV power $power \\%"
-    //% power.min=0 power.max=100
+    //% block="Setting UAV altitude $alt \\%"
+    //% alt.min=0 alt.max=100
     //% weight=90 group="Basic"
-    export function UAV_speed(power: number): void {
-        serial.readString()
-        let txBuff = pins.createBuffer(5)
-        txBuff[0] = 0xEF
-        txBuff[1] = 1
-        txBuff[2] = 0x01
-        txBuff[3] = 0x03
-        txBuff[4] = power
+    export function UAV_speed(alt: number): void {
+        let txBuff = pins.createBuffer(8)
+        txBuff[0] = 0xa5
+        txBuff[1] = 0x01
+        if (alt > 255) {
+            txBuff[2] = 255
+            txBuff[3] = alt - 255
+        }
+        else {
+            txBuff[2] = alt
+            txBuff[3] = 0
+        }
         serial.writeBuffer(txBuff)
         WaitCellback()
     }
@@ -107,12 +111,10 @@ namespace Drones {
                 }
             }
         }
-        serial.readString()
-        let txBuff = pins.createBuffer(4)
-        txBuff[0] = 0xEF
-        txBuff[1] = 0
-        txBuff[2] = 0x01
-        txBuff[3] = basicstate
+        let txBuff = pins.createBuffer(8)
+        txBuff[0] = 0xa5
+        txBuff[1] = 0x06
+        txBuff[2] = basicstate
         serial.writeBuffer(txBuff)
         WaitCellback()
     }
@@ -120,20 +122,17 @@ namespace Drones {
     //% block="Move action %Directionstate by %distance cm"
     //% weight=70 group="Basic"
     export function Move_action(Directionstate: Directionoptions, distance: number): void {
-        serial.readString()
-        let txBuff = pins.createBuffer(6)
-        txBuff[0] = 0xEF
-        txBuff[2] = 0x01
-        txBuff[3] = Directionstate
+        let txBuff = pins.createBuffer(8)
+        txBuff[0] = 0xa5
+        txBuff[1] = 0x02
+        txBuff[2] = Directionstate
         if (distance > 255) {
-            txBuff[1] = 2
-            txBuff[4] = 255
-            txBuff[5] = distance - 255
+            txBuff[3] = 255
+            txBuff[4] = distance - 255
         }
         else {
-            txBuff[1] = 1
-            txBuff[4] = distance
-            txBuff[5] = 0
+            txBuff[3] = distance
+            txBuff[4] = 0
         }
         serial.writeBuffer(txBuff)
         WaitCellback()
@@ -141,20 +140,17 @@ namespace Drones {
     //% block="Rotation action %rotationstate by %angle °"
     //% weight=65 group="Basic"
     export function Rotation_action(rotationstate: Angleoptions, angle: number): void {
-        serial.readString()
-        let txBuff = pins.createBuffer(6)
-        txBuff[0] = 0xEF
-        txBuff[2] = 0x01
+        let txBuff = pins.createBuffer(8)
+        txBuff[0] = 0xa5
+        txBuff[1] = 0x03
         txBuff[3] = rotationstate
         if (angle > 255) {
-            txBuff[1] = 2
-            txBuff[4] = 255
-            txBuff[5] = angle - 255
+            txBuff[2] = 255
+            txBuff[3] = angle - 255
         }
         else {
-            txBuff[1] = 1
-            txBuff[4] = angle
-            txBuff[5] = 0
+            txBuff[2] = angle
+            txBuff[3] = 0
         }
         serial.writeBuffer(txBuff)
         WaitCellback()
@@ -174,7 +170,6 @@ namespace Drones {
     //% block="UAV hovering %time S"
     //% weight=60 group="Basic"
     export function Hovering(time: number): void {
-        serial.readString()
         let txBuff = pins.createBuffer(5)
         txBuff[0] = 0xEF
         txBuff[1] = 1
@@ -211,8 +206,8 @@ namespace Drones {
     //% weight=10 group="Caution!"
     export function Urgent_action(urgentstate: Urgentoptions): void {
         serial.readString()
-        let txBuff = pins.createBuffer(4)
-        txBuff[0] = 0xEF
+        let txBuff = pins.createBuffer(8)
+        txBuff[0] = 0xa5
         txBuff[1] = 0
         txBuff[2] = 0x01
         txBuff[3] = urgentstate
