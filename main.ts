@@ -4,7 +4,7 @@
 //% color=#FF0000  icon="\uf072" block="Drones" blockId="Drones"
 //% groups='["Basic", "Caution!"]'
 namespace Drones {
-    let rxBuff = pins.createBuffer(3)
+    let isInit = 0
     export enum Runmodes {
         //% block="Master"
         Master = 0x01,
@@ -68,7 +68,7 @@ namespace Drones {
             }else{
                 if (rowData[0] == 0x5a && rowData[1] == 0xff){
                     //basic.showIcon(IconNames.Yes)
-                    music.startMelody(music.builtInMelody(Melodies.BaDing), MelodyOptions.Once)
+                    //music.startMelody(music.builtInMelody(Melodies.BaDing), MelodyOptions.Once)
                     return true
                 }
             }
@@ -79,17 +79,22 @@ namespace Drones {
     //% block="Initialize UAV"
     //% weight=100 group="Basic"
     export function initModule(): void {
-        serial.redirect(
-            SerialPin.P14,
-            SerialPin.P13,
-            BaudRate.BaudRate115200
-        )
-        music.startMelody(music.builtInMelody(Melodies.PowerUp), MelodyOptions.Once)
+        if (isInit == 0){
+            isInit = 1
+            //basic.showIcon(IconNames.Target)
+            serial.redirect(
+                SerialPin.P14,
+                SerialPin.P13,
+                BaudRate.BaudRate115200
+            )
+            music.startMelody(music.builtInMelody(Melodies.PowerUp), MelodyOptions.Once)
+        }
     }
     //% block="Setting UAV altitude $alt cm"
     //% alt.min=0 alt.max=100
     //% weight=90 group="Basic"
     export function UAV_altitude(alt: number): void {
+        initModule()
         let txBuff = pins.createBuffer(8)
         txBuff[0] = 0xa5
         txBuff[1] = 0x01
@@ -107,6 +112,7 @@ namespace Drones {
     //% block="Basic action %basicstate"
     //% weight=89 group="Basic"
     export function Basic_action(basicstate: Basicoptions): void {
+        initModule()
         if (basicstate == 1) {
             for (let index = 3; index >= 0; index--) {
                 basic.showNumber(index)
@@ -128,6 +134,7 @@ namespace Drones {
     //% block="Move action %Directionstate by %distance cm"
     //% weight=70 group="Basic"
     export function Move_action(Directionstate: Directionoptions, distance: number): void {
+        initModule()
         let txBuff = pins.createBuffer(8)
         txBuff[0] = 0xa5
         txBuff[1] = 0x02
@@ -146,6 +153,7 @@ namespace Drones {
     //% block="Rotation action %rotationstate by %angle °"
     //% weight=65 group="Basic"
     export function Rotation_action(rotationstate: Angleoptions, angle: number): void {
+        initModule()
         let txBuff = pins.createBuffer(8)
         txBuff[0] = 0xa5
         txBuff[1] = 0x03
@@ -165,6 +173,7 @@ namespace Drones {
     //% weight=64 group="Basic"
     //% deprecated=true
     export function Roll_action(rollstate: Rolloptions): void {
+        initModule()
         serial.readString()
         let txBuff = pins.createBuffer(8)
         txBuff[0] = 0xa5
@@ -177,7 +186,7 @@ namespace Drones {
     //% block="Get %state Value"
     //% weight=50 group="Basic"
     export function Get_Sensor(state: Sensoroptions): number {
-
+        initModule()
         while (true) {
             let txBuff = pins.createBuffer(8)
             txBuff[0] = 0xa5
@@ -192,8 +201,7 @@ namespace Drones {
             } else {
                 if (rowData[0] == 0x5a && rowData[1] == 0x81) {
                     //basic.showIcon(IconNames.Yes)
-                    music.startMelody(music.builtInMelody(Melodies.BaDing), MelodyOptions.Once)
-                    
+                    //music.startMelody(music.builtInMelody(Melodies.BaDing), MelodyOptions.Once)
                     if (state == Sensoroptions.Voltage) {
                         return (rowData[2]) * 0.1
                     }

@@ -1,5 +1,5 @@
 basic.showIcon(IconNames.Heart)
-Drones.initModule()
+//Drones.initModule()
 
 input.onButtonPressed(Button.A, function() {
     //Drones.Basic_action(Drones.Basicoptions.Takeoff)
