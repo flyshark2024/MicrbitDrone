@@ -149,7 +149,8 @@ namespace Drones {
         WaitCellback()
     }
 
-    //% block="Move action %Directionstate by %sec sec"
+    //% block="Move action %Directionstate by %sec s"
+    //% sec.min=0 sec.max=100
     //% weight=70 group="Basic"
     export function Move_actionTime(Directionstate: Directionoptions, sec: number): void {
         initModule()
@@ -165,8 +166,9 @@ namespace Drones {
             txBuff[3] = sec
             txBuff[4] = 0
         }
-        serial.writeBuffer(txBuff)
-        WaitCellback()
+        //serial.writeBuffer(txBuff)
+        //WaitCellback()
+        basic.pause(sec*1000)
     }
 
     //% block="Rotation action %rotationstate by %angle °"
