@@ -155,7 +155,7 @@ namespace Drones {
         initModule()
         let txBuff = pins.createBuffer(8)
         txBuff[0] = 0xa5
-        txBuff[1] = 0x02
+        txBuff[1] = 0x08
         txBuff[2] = Directionstate
         if (sec > 255) {
             txBuff[3] = 255
