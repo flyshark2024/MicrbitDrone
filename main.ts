@@ -166,7 +166,7 @@ namespace Drones {
             txBuff[3] = sec
             txBuff[4] = 0
         }
-        //serial.writeBuffer(txBuff)
+        serial.writeBuffer(txBuff)
         //WaitCellback()
         basic.pause(sec*1000)
     }
