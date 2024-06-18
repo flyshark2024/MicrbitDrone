@@ -75,10 +75,8 @@ namespace Drones {
         }
         return false
     }
-
-    //% block="Initialize UAV"
-    //% weight=100 group="Basic"
-    export function initModule(): void {
+    
+    function initModule(): void {
         if (isInit == 0){
             isInit = 1
             //basic.showIcon(IconNames.Target)
