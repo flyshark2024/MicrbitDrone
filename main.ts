@@ -53,7 +53,7 @@ namespace Drones {
         //% block="Height"
         Height = 0x02
     }
-    function WaitCellback(): boolean {
+    function WaitCallback(): boolean {
         while(true){
             let txBuff = pins.createBuffer(8)
             txBuff[0] = 0xa5
@@ -105,7 +105,7 @@ namespace Drones {
             txBuff[3] = 0
         }
         serial.writeBuffer(txBuff)
-        WaitCellback()
+        WaitCallback()
     }
     //% block="Basic action %basicstate"
     //% weight=89 group="Basic"
@@ -126,7 +126,7 @@ namespace Drones {
         txBuff[1] = 0x06
         txBuff[2] = basicstate
         serial.writeBuffer(txBuff)
-        WaitCellback()
+        WaitCallback()
     }
 
     //% block="Move action %Directionstate by %distance cm"
@@ -146,7 +146,7 @@ namespace Drones {
             txBuff[4] = 0
         }
         serial.writeBuffer(txBuff)
-        WaitCellback()
+        WaitCallback()
     }
 
     //% block="Move action %Directionstate by %sec s"
@@ -167,7 +167,7 @@ namespace Drones {
             txBuff[4] = 0
         }
         serial.writeBuffer(txBuff)
-        //WaitCellback()
+        //WaitCallback()
         basic.pause(sec*1000)
     }
 
@@ -188,7 +188,7 @@ namespace Drones {
             txBuff[4] = 0
         }
         serial.writeBuffer(txBuff)
-        WaitCellback()
+        WaitCallback()
     }
     //% block="Roll action %rotationstate "
     //% weight=64 group="Basic"
@@ -201,7 +201,7 @@ namespace Drones {
         txBuff[2] = 0x07
         txBuff[3] = rollstate
         serial.writeBuffer(txBuff)
-        WaitCellback()
+        WaitCallback()
     }
 
     //% block="Get %state Value"
