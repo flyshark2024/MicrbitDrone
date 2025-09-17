@@ -67,7 +67,7 @@ namespace Drones {
                 return false
             }else{
                 if (rowData[0] == 0x5a && rowData[1] == 0xff){
-                    //basic.showIcon(IconNames.Yes)
+                    basic.showIcon(IconNames.Yes)
                     //music.startMelody(music.builtInMelody(Melodies.BaDing), MelodyOptions.Once)
                     return true
                 }
