@@ -55,6 +55,7 @@ namespace Drones {
     }
     function WaitCallback(): boolean {
         while(true){
+            let comRxErrorCnt = 0
             let txBuff = pins.createBuffer(8)
             txBuff[0] = 0xa5
             txBuff[1] = 0x5a
@@ -63,8 +64,12 @@ namespace Drones {
             basic.pause(500)
             let rowData = serial.readBuffer(0)
             if(rowData.length < 8){
-                basic.showIcon(IconNames.No)
-                return false
+                basic.showNumber(rowData.length)
+                comRxErrorCnt += 1
+                if(comRxErrorCnt > 3){
+                    basic.showIcon(IconNames.No)
+                    return false
+                }
             }else{
                 if (rowData[0] == 0x5a && rowData[1] == 0xff){
                     basic.showIcon(IconNames.Yes)
