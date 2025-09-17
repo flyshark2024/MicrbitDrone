@@ -64,7 +64,7 @@ namespace Drones {
             basic.pause(500)
             let rowData = serial.readBuffer(0)
             if(rowData.length < 8){
-                basic.showNumber(rowData.length)
+                //basic.showNumber(rowData.length)
                 comRxErrorCnt += 1
                 if(comRxErrorCnt > 3){
                     basic.showIcon(IconNames.No)
