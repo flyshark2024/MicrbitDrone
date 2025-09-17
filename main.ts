@@ -58,8 +58,8 @@ namespace Drones {
             let txBuff = pins.createBuffer(8)
             txBuff[0] = 0xa5
             txBuff[1] = 0x5a
-            serial.writeBuffer(txBuff)
             serial.setRxBufferSize(8)
+            serial.writeBuffer(txBuff)
             basic.pause(500)
             let rowData = serial.readBuffer(0)
             if(rowData.length < 8){
