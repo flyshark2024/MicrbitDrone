@@ -72,8 +72,8 @@ namespace Drones {
                 }
             }else{
                 if (rowData[0] == 0x5a && rowData[1] == 0xff){
-                    basic.showIcon(IconNames.Yes)
-                    //music.startMelody(music.builtInMelody(Melodies.BaDing), MelodyOptions.Once)
+                    // basic.showIcon(IconNames.Yes)
+                    // music.startMelody(music.builtInMelody(Melodies.BaDing), MelodyOptions.Once)
                     return true
                 }
             }
