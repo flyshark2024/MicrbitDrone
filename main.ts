@@ -101,14 +101,8 @@ namespace Drones {
         let txBuff = pins.createBuffer(8)
         txBuff[0] = 0xa5
         txBuff[1] = 0x01
-        if (alt > 255) {
-            txBuff[2] = 255
-            txBuff[3] = alt - 255
-        }
-        else {
-            txBuff[2] = alt
-            txBuff[3] = 0
-        }
+        txBuff[2] = alt&0xff
+        txBuff[3] = (alt>>8)&0xff
         serial.writeBuffer(txBuff)
         WaitCallback()
     }
@@ -142,14 +136,10 @@ namespace Drones {
         txBuff[0] = 0xa5
         txBuff[1] = 0x02
         txBuff[2] = Directionstate
-        if (distance > 255) {
-            txBuff[3] = 255
-            txBuff[4] = distance - 255
-        }
-        else {
-            txBuff[3] = distance
-            txBuff[4] = 0
-        }
+
+        txBuff[3] = distance&0xff
+        txBuff[4] = (distance>>8)&0xff
+
         serial.writeBuffer(txBuff)
         WaitCallback()
     }
@@ -163,14 +153,10 @@ namespace Drones {
         txBuff[0] = 0xa5
         txBuff[1] = 0x08
         txBuff[2] = Directionstate
-        if (sec > 255) {
-            txBuff[3] = 255
-            txBuff[4] = sec - 255
-        }
-        else {
-            txBuff[3] = sec
-            txBuff[4] = 0
-        }
+
+        txBuff[3] = sec&0xff
+        txBuff[4] = (sec>>8)&0xff
+        
         serial.writeBuffer(txBuff)
         //WaitCallback()
         basic.pause(sec*1000)
@@ -184,14 +170,10 @@ namespace Drones {
         txBuff[0] = 0xa5
         txBuff[1] = 0x03
         txBuff[2] = rotationstate
-        if (angle > 255) {
-            txBuff[3] = 255
-            txBuff[4] = angle - 255
-        }
-        else {
-            txBuff[3] = angle
-            txBuff[4] = 0
-        }
+
+        txBuff[3] = angle&0xff
+        txBuff[4] = (angle>>8)&0xff
+        
         serial.writeBuffer(txBuff)
         WaitCallback()
     }
