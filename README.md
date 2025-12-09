@@ -47,7 +47,7 @@ basic.forever(function () {
 
 ```
 ## Supported targets
-for PXT/microbit
+for microbit drone
 
 ## License
 MIT
