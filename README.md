@@ -1,5 +1,5 @@
 # MicrobitDrone Package
-![](/image.jpg/)
+![](https://raw.githubusercontent.com/flyshark2024/MicrbitDrone/master/image.jpg)
 
 DIY Drone Bit is a DIY STEAM drone that uses the micro:bit for programming and flight control.
 
