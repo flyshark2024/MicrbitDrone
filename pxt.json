@@ -1,5 +1,5 @@
 {
-    "name": "ptx-BitDrone",
+    "name": "microbit-drone",
     "version": "0.1.0",
     "description": "Drone control extension for micro:bit",
     "dependencies": {
@@ -15,11 +15,6 @@
     "testFiles": [
         "test.ts"
     ],
-    "public": true,
-    "targetVersions": {
-        "target": "7.0.51",
-        "targetId": "microbit"
-    },
     "supportedTargets": [
         "microbit"
     ],
