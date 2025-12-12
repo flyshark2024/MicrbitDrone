@@ -1,3 +1,10 @@
+# MicrobitDrone Package
+![](/image.png/)
+
+DIY Drone Bit is a DIY STEAM drone that uses the micro:bit for programming and flight control.
+
+The micro:bit can be used to implement basic flight control functions for drones, including altitude hold, waypoint navigation, speed control, turning, and rotation.
+
 ## Basic usage
 * To initialize the UAV
 ```JavaScript
